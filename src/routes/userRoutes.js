@@ -83,7 +83,7 @@ router.delete("/:id", async (req, res) => {
 // Signup route
 router.post("/signup", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body ?? {};
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -129,7 +129,7 @@ router.post("/signup", async (req, res) => {
 // Login route
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body ?? {};
 
     // Find user
     const user = await User.findOne({ email });
