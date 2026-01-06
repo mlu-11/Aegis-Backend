@@ -22,8 +22,8 @@ const seedData = async () => {
 
     // 2. Initialize the Project
     const project = await Project.create({
-      name: "Test Collaboration Project",
-      description: "Initial test environment for friends",
+      name: "Test  Project",
+      description: "Initial test environment for questionnaire",
       ownerId: admin._id,
       memberIds: [admin._id], // You can add friends' IDs here later
     });
