@@ -13,7 +13,7 @@ const seedData = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
 
-    // 1. Create a Master Admin User (or use your own ID)
+    // 1. Create a User Account
     const admin = await User.create({
       name: "Admin",
       email: "admin@test.com",

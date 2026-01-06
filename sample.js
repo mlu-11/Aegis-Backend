@@ -36,23 +36,26 @@ const sampleData = async () => {
 
     const users = await User.insertMany([
       {
-        name: "John Doe",
-        email: "john@example.com",
-        avatar: "https://mui.com/static/images/avatar/1.jpg",
+        name: "user",
+        email: "test@example.com",
+        password: "password123",
       },
       {
         name: "Jane Smith",
         email: "jane@example.com",
+        password: "password123",
         avatar: "https://mui.com/static/images/avatar/2.jpg",
       },
       {
         name: "Bob Johnson",
         email: "bob@example.com",
+        password: "password123",
         avatar: "https://mui.com/static/images/avatar/3.jpg",
       },
       {
         name: "Alice Brown",
         email: "alice@example.com",
+        password: "password123",
         avatar: "https://mui.com/static/images/avatar/4.jpg",
       },
     ]);
