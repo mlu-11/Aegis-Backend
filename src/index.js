@@ -14,16 +14,37 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-//app.use(cors());
-// CORS setup====publish app
-app.use(
-  cors({
-    origin: ["https://aegis.vercel.app"], // later add custom domain too
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://aegis11.vercel.app"], // later add custom domain too
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
 
-app.use(express.json());
+// app.use(express.json());
+// app.options("*", cors());
+
+const allowedOrigins = ["https://aegis11.vercel.app"];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // allow requests with no origin (like curl, health checks)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 connectDB();
 
