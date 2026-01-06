@@ -7,6 +7,7 @@ import Issue from "./src/models/Issue.js";
 import BPMNDiagram from "./src/models/BPMNDiagram.js";
 import BPMNElement from "./src/models/BPMNElement.js";
 import BPMNElementStatus from "./src/models/BPMNElementStatus.js";
+import bcrypt from "bcryptjs";
 
 dotenv.config();
 
@@ -33,12 +34,14 @@ const sampleData = async () => {
     await BPMNElementStatus.deleteMany({});
 
     console.log("Cleared existing data");
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash("password123", salt);
 
     const users = await User.insertMany([
       {
         name: "user",
         email: "test@example.com",
-        password: "password123",
+        password: hashedPassword,
       },
       {
         name: "Jane Smith",
