@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 5000;
 // app.use(express.json());
 // app.options("*", cors());
 
-const allowedOrigins = ["https://aegis11.vercel.app"];
+const allowedOrigins = ["https://aegis11.vercel.app", "http://localhost:5173"];
 
 const corsOptions = {
   origin: (origin, callback) => {
