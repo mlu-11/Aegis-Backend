@@ -20,7 +20,7 @@ router.get("/diagrams", async (req, res) => {
 
 router.get("/diagrams/:id", async (req, res) => {
   try {
-    const diagram = await BPMNDiagram.ById(req.params.id);
+    const diagram = await BPMNDiagram.findById(req.params.id);
     if (!diagram) {
       return res.status(404).json({ message: "Diagram not found" });
     }
@@ -42,7 +42,7 @@ router.post("/diagrams", async (req, res) => {
 
 router.put("/diagrams/:id", async (req, res) => {
   try {
-    const diagram = await BPMNDiagram.ByIdAndUpdate(
+    const diagram = await BPMNDiagram.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true, runValidators: true }
@@ -387,15 +387,14 @@ router.get("/diagrams/:id/previous-sprint-snapshot", async (req, res) => {
     }
 
     // Sort by takenAt descending (most recent first)
-    const sortedSnapshots = snapshots.sort((a, b) =>
-      new Date(b.takenAt).getTime() - new Date(a.takenAt).getTime()
+    const sortedSnapshots = snapshots.sort(
+      (a, b) => new Date(b.takenAt).getTime() - new Date(a.takenAt).getTime()
     );
 
     // Get the second most recent snapshot (index 1)
     // If there's only one snapshot, return it
-    const previousSnapshot = sortedSnapshots.length > 1
-      ? sortedSnapshots[1]
-      : sortedSnapshots[0];
+    const previousSnapshot =
+      sortedSnapshots.length > 1 ? sortedSnapshots[1] : sortedSnapshots[0];
 
     res.json(previousSnapshot);
   } catch (error) {

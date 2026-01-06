@@ -44,19 +44,19 @@ const sampleData = async () => {
         password: hashedPassword,
       },
       {
-        name: "Jane Smith",
+        name: "Jane",
         email: "jane@example.com",
         password: "password123",
         avatar: "https://mui.com/static/images/avatar/2.jpg",
       },
       {
-        name: "Bob Johnson",
+        name: "Bob",
         email: "bob@example.com",
         password: "password123",
         avatar: "https://mui.com/static/images/avatar/3.jpg",
       },
       {
-        name: "Alice Brown",
+        name: "Alice",
         email: "alice@example.com",
         password: "password123",
         avatar: "https://mui.com/static/images/avatar/4.jpg",
